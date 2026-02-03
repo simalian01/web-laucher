@@ -16,6 +16,7 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import androidx.viewpager2.widget.ViewPager2
+import com.example.weblaucher.BuildConfig
 import com.example.weblaucher.R
 import com.example.weblaucher.data.BackBehavior
 import com.example.weblaucher.data.LauncherSettings
@@ -215,14 +216,22 @@ class HomeActivity : AppCompatActivity() {
 
     private fun setupGesture() {
         val detector = GestureDetector(this, object : GestureDetector.SimpleOnGestureListener() {
-            override fun onFling(e1: MotionEvent, e2: MotionEvent, velocityX: Float, velocityY: Float): Boolean {
+            override fun onDown(e: MotionEvent): Boolean = true
+
+            override fun onFling(
+                e1: MotionEvent?,
+                e2: MotionEvent,
+                velocityX: Float,
+                velocityY: Float
+            ): Boolean {
+                if (e1 == null) return super.onFling(e1, e2, velocityX, velocityY)
                 val deltaY = e2.y - e1.y
                 val deltaX = e2.x - e1.x
                 if (deltaY < -200 && kotlin.math.abs(velocityY) > kotlin.math.abs(velocityX) && kotlin.math.abs(deltaX) < 200) {
                     openDrawer()
                     return true
                 }
-                return false
+                return super.onFling(e1, e2, velocityX, velocityY)
             }
         })
         binding.homeRoot.setOnTouchListener { _, event ->
