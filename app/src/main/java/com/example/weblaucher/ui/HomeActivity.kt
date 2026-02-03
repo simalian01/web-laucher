@@ -8,7 +8,6 @@ import android.net.Uri
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import android.view.GestureDetector
 import android.view.MotionEvent
 import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
@@ -16,6 +15,7 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import androidx.viewpager2.widget.ViewPager2
+import com.example.weblaucher.BuildConfig
 import com.example.weblaucher.R
 import com.example.weblaucher.data.BackBehavior
 import com.example.weblaucher.data.LauncherSettings
@@ -214,19 +214,27 @@ class HomeActivity : AppCompatActivity() {
     }
 
     private fun setupGesture() {
-        val detector = GestureDetector(this, object : GestureDetector.SimpleOnGestureListener() {
-            override fun onFling(e1: MotionEvent, e2: MotionEvent, velocityX: Float, velocityY: Float): Boolean {
-                val deltaY = e2.y - e1.y
-                val deltaX = e2.x - e1.x
-                if (deltaY < -200 && kotlin.math.abs(velocityY) > kotlin.math.abs(velocityX) && kotlin.math.abs(deltaX) < 200) {
-                    openDrawer()
-                    return true
-                }
-                return false
-            }
-        })
+        val threshold = dpToPx(120f)
+        var startX = 0f
+        var startY = 0f
         binding.homeRoot.setOnTouchListener { _, event ->
-            detector.onTouchEvent(event)
+            when (event.actionMasked) {
+                MotionEvent.ACTION_DOWN -> {
+                    startX = event.x
+                    startY = event.y
+                }
+                MotionEvent.ACTION_MOVE, MotionEvent.ACTION_UP -> {
+                    val deltaX = event.x - startX
+                    val deltaY = event.y - startY
+                    if (kotlin.math.abs(deltaX) > kotlin.math.abs(deltaY)) {
+                        return@setOnTouchListener false
+                    }
+                    if (deltaY < -threshold) {
+                        openDrawer()
+                        return@setOnTouchListener true
+                    }
+                }
+            }
             false
         }
     }
@@ -250,6 +258,10 @@ class HomeActivity : AppCompatActivity() {
 
     private fun openExternal(url: String) {
         startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(url)))
+    }
+
+    private fun dpToPx(dp: Float): Float {
+        return dp * resources.displayMetrics.density
     }
 
     private fun onRendererGone(windowId: String) {
