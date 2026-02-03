@@ -224,7 +224,7 @@ class HomeActivity : AppCompatActivity() {
                     openDrawer()
                     return true
                 }
-                return false
+                return super.onFling(e1, e2, velocityX, velocityY)
             }
         })
         binding.homeRoot.setOnTouchListener { _, event ->
