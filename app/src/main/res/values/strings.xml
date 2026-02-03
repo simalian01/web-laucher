@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">Web Laucher</string>
+    <string name="default_window_name">窗口1</string>
+    <string name="default_window_url">https://example.com</string>
+    <string name="open_settings">设置</string>
+    <string name="open_app_drawer">应用抽屉</string>
+    <string name="set_default_launcher">设置为默认桌面</string>
+    <string name="ignore_battery_optimizations">忽略电池优化</string>
+    <string name="foreground_service_channel">Web Laucher 保活</string>
+    <string name="foreground_service_description">保持 Web 窗口在线</string>
+    <string name="app_drawer_search">搜索应用</string>
+    <string name="toast_no_back">已到最前页</string>
+    <string name="toast_drawer_opened">已打开应用抽屉</string>
+    <string name="toast_drawer_closed">已关闭应用抽屉</string>
+    <string name="network_lost">网络已断开</string>
+    <string name="network_available">网络已恢复</string>
+</resources>

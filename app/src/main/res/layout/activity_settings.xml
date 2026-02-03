@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="窗口管理"
+            android:textStyle="bold" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/window_list"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_marginTop="8dp" />
+
+        <Button
+            android:id="@+id/add_window"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="添加窗口" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="16dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="在线策略"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginTop="8dp">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="最大常驻 WebView" />
+
+            <EditText
+                android:id="@+id/max_alive_input"
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:inputType="number" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="网络恢复自动刷新"
+            android:layout_marginTop="8dp" />
+
+        <RadioGroup
+            android:id="@+id/refresh_group"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <RadioButton
+                android:id="@+id/refresh_off"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="关闭" />
+
+            <RadioButton
+                android:id="@+id/refresh_current"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="刷新当前窗口" />
+
+            <RadioButton
+                android:id="@+id/refresh_all"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="刷新全部窗口" />
+        </RadioGroup>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="8dp">
+
+            <Button
+                android:id="@+id/refresh_current_button"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="刷新当前" />
+
+            <Button
+                android:id="@+id/refresh_all_button"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginStart="8dp"
+                android:text="刷新全部" />
+        </LinearLayout>
+
+        <Switch
+            android:id="@+id/foreground_service_switch"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="开启前台保活服务"
+            android:layout_marginTop="8dp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="16dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="WebView 选项"
+            android:textStyle="bold" />
+
+        <Switch
+            android:id="@+id/third_party_cookie_switch"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="允许第三方 Cookie" />
+
+        <EditText
+            android:id="@+id/user_agent_input"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="自定义 User-Agent（可选）" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="16dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="返回键行为"
+            android:textStyle="bold" />
+
+        <RadioGroup
+            android:id="@+id/back_group"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <RadioButton
+                android:id="@+id/back_web"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="WebView 后退" />
+
+            <RadioButton
+                android:id="@+id/back_disabled"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="禁用后退" />
+        </RadioGroup>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="16dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="跳转策略"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/whitelist_input"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="白名单域名，逗号分隔" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="16dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="调试"
+            android:textStyle="bold" />
+
+        <Switch
+            android:id="@+id/debug_switch"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="开启 WebView 远程调试 (debug)" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="16dp" />
+
+        <Button
+            android:id="@+id/default_launcher_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="设置为默认桌面" />
+
+        <Button
+            android:id="@+id/battery_optimization_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="忽略电池优化"
+            android:layout_marginTop="8dp" />
+    </LinearLayout>
+</ScrollView>
